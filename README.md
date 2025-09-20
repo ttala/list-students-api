@@ -29,15 +29,15 @@ The API requires Basic Auth:
 
 ## Installation
 Clone the repository:
-   ```bash
+```bash
    git clone https://github.com/yourusername/student-age-api.git
    cd student-age-api
-   ```
+```
 Build the image:
-    ```bash
-       docker build -t student-age-api .
-    ```
+```bash
+    docker build -t student-age-api .
+```
 Run the container:
    ```bash
    docker run -d -p 5000:5000 -v $(pwd)/data:/data student-age-api
-   ```
+```
