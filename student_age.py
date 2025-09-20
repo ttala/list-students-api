@@ -63,7 +63,7 @@ def add_student_age():
         json.dump(student_age, student_age_file, indent=4, ensure_ascii=False)
     return f"<{student_name}> added !"
 
-@app.route('/api/v1.0/del_student/<student_name>', methods=['GET'])
+@app.route('/api/v1.0/del_student/<student_name>', methods=['DELETE'])
 @auth.login_required
 def del_student_age(student_name):
     if student_name not in student_age :
