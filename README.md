@@ -1,7 +1,7 @@
 # Student Age API
 
 This project is a simple **Flask REST API** that manages a list of students and their ages.  
-It provides endpoints to **list, retrieve, add, and delete** student records stored in a JSON file.  
+It provides endpoints to **list, add, and delete** student records stored in a JSON file.  
 The API is protected with **HTTP Basic Authentication**.
 
 ---
@@ -10,7 +10,6 @@ The API is protected with **HTTP Basic Authentication**.
 - **Basic authentication** with username/password.
 - **CRUD operations** on student ages:
   - Get all student ages. ("GET /api/v1.0/get_student_ages")
-  - Get a specific student’s age. (GET /api/v1.0/get_student_ages/<student_name>)
   - Add a new student. (POST /api/v1.0/add_student, Content-Type: application/json)
   - Delete a student. (DELETE /api/v1.0/del_student/<student_name>)
 - **Persistent storage** in a JSON file (`data/student_age.json`).
@@ -38,6 +37,12 @@ Build the image:
     docker build -t student-age-api .
 ```
 Run the container:
-   ```bash
+```bash
    docker run -d -p 5000:5000 -v $(pwd)/data:/data student-age-api
 ```
+
+Access the application to the URL
+ ```bash
+   http://Your-Host-IP:5000/api/v1.0/get_student_ages
+```
+

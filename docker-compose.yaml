@@ -1,0 +1,33 @@
+services:
+    web:
+       image: php:apache
+       container_name: webapp
+       environment:
+          USERNAME: tyeri
+          PASSWORD: password
+       ports:
+         - "8080:80"
+       volumes:
+          - ./website:/var/www/html
+       networks:
+         - net
+
+    api:
+      build: .
+      container_name: student-api
+      depends_on: 
+         - web
+      expose:
+        - "5000"
+      command: ["python3", "student_age.py"]
+      volumes:
+        - apivolume:/data
+      networks:
+        - net
+    
+networks:
+    net:
+      driver: bridge
+
+volumes:
+    apivolume:

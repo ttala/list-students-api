@@ -13,11 +13,14 @@ auth = HTTPBasicAuth()
 app = Flask(__name__)
 app.debug = True
 
-@auth.get_password
-def get_password(username):
-    if username == 'tyeri':
-        return 'password'
-    return None
+USERNAME = os.getenv('USERNAME', 'default_username')
+PASSWORD = os.getenv('PASSWORD', 'default_password')
+
+@auth.verify_password
+def verify_password(username, password):
+    if username == USERNAME and password == PASSWORD:
+        return True
+    return False
 
 @auth.error_handler
 def unauthorized():
@@ -37,15 +40,6 @@ student_age = json.load(student_age_file)
 @auth.login_required
 def get_student_ages():
     return jsonify({'student_ages': student_age })
-
-@app.route('/api/v1.0/get_student_ages/<student_name>', methods=['GET'])
-@auth.login_required
-def get_student_age(student_name):
-    if student_name not in student_age :
-        abort(404)
-    if student_name in student_age :
-      age = student_age[student_name]
-    return f"Name: {student_name}, age :{age}"
 
 @app.route('/api/v1.0/add_student', methods=['POST'])
 @auth.login_required
