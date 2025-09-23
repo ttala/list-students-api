@@ -26,7 +26,7 @@ The API requires Basic Auth:
 
 ---
 
-## Installation
+## Deployment
 Clone the repository:
 ```bash
    git clone https://github.com/yourusername/student-age-api.git
